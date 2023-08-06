@@ -37,10 +37,7 @@ const xScale = d3.scaleTime()
     .range([0, width]);
 
 const yScale = d3.scaleLinear()
-    .domain([
-        d3.min(parsedData, (d) => d3.min(d.values, (v) => v.total)),
-        d3.max(parsedData, (d) => d3.max(d.values, (v) => v.total))
-    ])
+    .domain([500, 4000]) 
     .range([height, 0]);
 
 const chartSvg = svg.selectAll('.line')
