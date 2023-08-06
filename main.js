@@ -9,7 +9,7 @@ const margin = {top: 40, right: 30, bottom: 7, left: 50},
     height = 300 - margin.top - margin.bottom;
 
 // Parsing timestamps
-const parseTime = d3.timeParse('%Y');
+const parseTime = d3.timeParse('%Y/%m/%d');
 
 const parsedData = lineData.map(item => (
     {
