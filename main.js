@@ -1,4 +1,4 @@
-import lineData from 'line-data.js'
+import lineData from './line-data.js'
 
 // Selecting the element
 const element = document.getElementById('line-chart');
