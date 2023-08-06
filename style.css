@@ -179,6 +179,8 @@ p {
 }
 
 .chart-wrapper {
+  max-width: 900px !important;
+  min-height: 100vh;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -186,16 +188,3 @@ p {
   align-items: center;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .chart-wrapper {
-      flex-direction: column; /* Stack items vertically */
-      align-items: stretch; /* Stretch items vertically */
-      padding: 20px; /* Add some padding for spacing */
-  }
-  .chart {
-      width: 100%; /* Occupy full width */
-      max-width: 400px; /* Limit maximum width for readability */
-      height: auto; /* Adjust height automatically */
-  }
-}
