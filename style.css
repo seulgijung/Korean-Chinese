@@ -179,9 +179,8 @@ p {
 }
 
 .chart-wrapper {
-  max-width: justify;
+  max-width: 200vw !important;
   min-height: 100vh;
-  min-width: 200vw !important;
   display: flex;
   justify-content: center;
   align-items: center;
