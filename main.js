@@ -46,6 +46,7 @@ const chartSvg = svg.selectAll('.line')
 
 // Drawing line with inner gradient and area
 // Adding functionality to make line and area curved
+function createChart() {
 const line = d3.line()
     .x(function(d) {
         return xScale(d.date);
@@ -110,3 +111,22 @@ svg.append("g")
 // Adding the y Axis
 svg.append("g")
     .call(d3.axisLeft(yScale));
+}
+
+// Create an Intersection Observer instance
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // When the chart wrapper is in the viewport, start the animation
+            startChartAnimation();
+            observer.unobserve(entry.target); // Unobserve to avoid multiple triggers
+        }
+    });
+}, {
+    root: null, // Use the viewport as the root
+    threshold: 0.5 // Trigger when at least 50% of the element is visible
+});
+
+// Observe the chart wrapper element
+const chartWrapper = document.querySelector('.chart-wrapper');
+observer.observe(chartWrapper);
