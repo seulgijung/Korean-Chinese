@@ -46,7 +46,6 @@ const chartSvg = svg.selectAll('.line')
 
 // Drawing line with inner gradient and area
 // Adding functionality to make line and area curved
-function createChart() {
 const line = d3.line()
     .x(function(d) {
         return xScale(d.date);
@@ -81,27 +80,62 @@ const path = chartSvg.append('path')
 
 const length = path.node().getTotalLength(); // Get line length
 
-// Drawing animated line
-path.attr("stroke-dasharray", length + " " + length)
-    .attr("stroke-dashoffset", length)
-    .transition()
-    .ease(d3.easeLinear)
-    .attr("stroke-dashoffset", 0)
-    .delay(1500)
-    .duration(3000)
+const chartMarker = document.querySelector("#chart-marker");
+const svg = d3.select("chartSvg");
 
-// Drawing animated area
-chartSvg.append("path")
-    .attr("d", function(d) {
-        return zeroArea(d.values)
-    })
-    .style('fill', 'rgba(255,111,60,0.15)')
-    .transition()
-    .duration(1500)
-    .attr("d", function(d) {
-        return area(d.values)
-    })
-    .style('fill', 'rgba(255,111,60,0.15)');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.intersectionRatio >= 0.5) {
+            // Start line animation
+            path.attr("stroke-dasharray", length + " " + length)
+                .attr("stroke-dashoffset", length)
+                .transition()
+                .ease(d3.easeLinear)
+                .attr("stroke-dashoffset", 0)
+                .duration(3000); // Animation duration
+
+            // Start area animation
+            chartSvg.append("path")
+                .attr("d", function(d) {
+                    return zeroArea(d.values);
+                })
+                .style('fill', 'rgba(255,111,60,0.15)')
+                .transition()
+                .duration(1500)
+                .attr("d", function(d) {
+                    return area(d.values);
+                })
+                .style('fill', 'rgba(255,111,60,0.15)');
+
+            // Disconnect the observer after animations start
+            observer.disconnect();
+        }
+    });
+});
+
+observer.observe(chartMarker);
+
+// // Drawing animated line
+// path.attr("stroke-dasharray", length + " " + length)
+//     .attr("stroke-dashoffset", length)
+//     .transition()
+//     .ease(d3.easeLinear)
+//     .attr("stroke-dashoffset", 0)
+//     .delay(1500)
+//     .duration(3000)
+
+// // Drawing animated area
+// chartSvg.append("path")
+//     .attr("d", function(d) {
+//         return zeroArea(d.values)
+//     })
+//     .style('fill', 'rgba(255,111,60,0.15)')
+//     .transition()
+//     .duration(1500)
+//     .attr("d", function(d) {
+//         return area(d.values)
+//     })
+//     .style('fill', 'rgba(255,111,60,0.15)');
 
 // Adding the x Axis
 svg.append("g")
@@ -111,7 +145,6 @@ svg.append("g")
 // Adding the y Axis
 svg.append("g")
     .call(d3.axisLeft(yScale));
-}
 
 // Create an Intersection Observer instance
 const observer = new IntersectionObserver(entries => {
