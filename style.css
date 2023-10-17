@@ -72,10 +72,18 @@ h3 {
 
 /* scrollama css startingn below */
 
-.scrolly-container {
+#scrolly {
 	position: relative;
+	padding: 1rem;
   }
-  
+
+  .scrolly-overlay {
+	position: relative;
+	padding: 0;
+	max-width: 35rem;
+	margin: 0 auto;
+  }
+
   .sticky-thing {
 	position: -webkit-sticky;
 	position: sticky;
@@ -84,75 +92,44 @@ h3 {
 	margin: 0;
 	z-index: 0;
 	top: 0;
-	min-height: 100vh;
+	height: 100vh;
 	/* Center everything inside */
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	justify-content: center;
-	overflow: hidden;
   }
-  
-  .video-container {
-	position: sticky;
-	top: 0;
-	z-index: -1;
-  }
-  
-  video {
-	position: absolute;
-	top: 0;
-	height: auto;
-	width: 100%;
-  }
-  
-  .sticky-thing iframe {
-	position: absolute;
-	top: 0;
-	max-width: 100%;
-	min-height: 100vh;
-  }
-  
-  .steps-container {
-	position: relative;
-	padding: 0;
-	z-index: 10;
-	max-width: 35rem;
-	margin: 0 auto;
-	padding-bottom: 4em;
-  }
-  
+
   .step {
 	margin: 0 auto 2rem auto;
 	margin-bottom: 25rem;
-	background-color: white;
+	background-color: #eee;
+	background-color: #fff;
 	color: black;
-	font-family: Arial, Helvetica, sans-serif
   }
-  
+
   .step p {
 	text-align: center;
 	padding: 1rem;
+	font-size: 1.25rem;
   }
-  
-  .hidden {
-	visibility: hidden;
-  }
-  
+
+  .hidden { visibility: hidden; }
+
+
   /* When it's less than 700 pixels wide, do normal scrollytelling */
-  
   @media only screen and (min-width: 700px) {
 	#scrolly.side-by-side {
 	  display: flex;
 	}
-  
+
 	#scrolly.side-by-side > div {
 	  flex-basis: 0;
 	  flex-grow: 1;
 	  flex-shrink: 1;
 	  padding: 0.75em;
 	}
-  
+
 	#scrolly.side-by-side .scrolly-overlay {
 	  margin-top: 70vh;
 	  order: 0;
@@ -160,7 +137,7 @@ h3 {
 	  min-width: 15rem;
 	  max-width: 20rem;
 	}
-  
+
 	#scrolly.side-by-side .sticky-thing {
 	  order: 1;
 	  flex-grow: 2;
@@ -251,3 +228,4 @@ h3 {
 	color: #000000;
 	font-size: small;
   }
+
