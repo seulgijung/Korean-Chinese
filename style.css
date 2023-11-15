@@ -31,11 +31,7 @@ h1 {
 .date {
 	font-weight: normal;
 	padding-left: 20px;
-}
-
-.language {
-	font-weight: normal;
-	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .graphic {
